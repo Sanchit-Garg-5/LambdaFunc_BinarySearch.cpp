@@ -45,7 +45,7 @@ template <class... Args> void _print(forward_list <Args...> v) {cerr << "[ "; fo
 template <class... Args> void _print(stack <Args...> v) {cerr << "[ "; while (!v.empty()) {_print(v.top()); cerr << " "; v.pop();} cerr << "]";}
 template <class... Args> void _print(queue <Args...> v) {cerr << "[ "; while (!v.empty()) {_print(v.front()); cerr << " "; v.pop();} cerr << "]";}
 template <class... Args> void _print(priority_queue <Args...> v) {cerr << "[ "; while (!v.empty()) {_print(v.top()); cerr << " "; v.pop();} cerr << "]";}
-
+//non recurisve lambda fucntion
 int main(){ll n; cin>>n;
     vector<ll>given;
     for(int i=0;i<n;i++){ll x; cin>>x; given.push_back(x);}
@@ -59,3 +59,21 @@ int main(){ll n; cin>>n;
         else{high=mid-1;}
     }
 }
+// if recurisve lamda fucntion
+int main(){ll n; cin>>n;
+    vector<ll>given;
+    for(int i=0;i<n;i++){ll x; cin>>x; given.push_back(x);}
+    ll low=0,high=n-1; ll ans=0;
+    auto func=[&](ll mid)->bool{
+        return (given[mid]<something);
+    };
+    while(low<=high){
+        ll mid=low+(high-low)/2;
+        if(func(mid)){ans=mid; low=mid+1;}
+        else{high=mid-1;}
+    }
+}
+auto func=[&](auto &&self, ll mid)->bool{
+    //base case
+    return self(self,mid);
+};
