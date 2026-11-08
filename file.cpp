@@ -64,8 +64,8 @@ int main(){ll n; cin>>n;
     vector<ll>given;
     for(int i=0;i<n;i++){ll x; cin>>x; given.push_back(x);}
     ll low=0,high=n-1; ll ans=0;
-    auto func=[&](ll mid)->bool{
-        return (given[mid]<something);
+    auto func=[&](auto&& self, ll mid)->bool{
+        return self(self,mid);
     };
     while(low<=high){
         ll mid=low+(high-low)/2;
